@@ -1,0 +1,20 @@
+{
+  "name": "git-branch-remove",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "bin": {
+    "remove": "bin/index.js"
+  },
+  "dependencies": {
+    "execa": "^6.1.0",
+    "inquirer": "^9.1.4"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "liushumei",
+  "license": "ISC"
+}
