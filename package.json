@@ -1,7 +1,8 @@
 {
   "name": "git-branch-remove",
   "version": "1.0.0",
-  "description": "",
+  "description": "根据选择的分支删除本地分支，支持同时删除原称分支",
+  "keywords": ["git", "branch"],
   "main": "index.js",
   "type": "module",
   "bin": {
