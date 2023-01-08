@@ -19,26 +19,35 @@ execaCommand('git branch')
     {
       type: 'checkbox',
       message: '请选择要删除的分支（已自动过滤master、gray-release、release分支）',
-      name: 'removeLocal',
+      name: 'localBranches',
       default: '',
       choices,
     },
     {
       type: 'confirm',
-      message: '是否同时删除远程分支?',
+      message: '是否同时删除远程分支? 默认为false',
       name: 'removeOrigin',
       default: false,
     },
   ])
   .then((answers) => {
-    const branchStr = answers.removeLocal.join(' ');
-    execaCommand('git branch -d ' + (answers.removeOrigin ? '-r ' : '') + branchStr)
+    const str = answers.localBranches.join(' ');
+    execaCommand('git branch -D ' + str)
       .then(() => {  
-        console.log('已成功删除分支：' + branchStr)
+        console.log('已成功删除本地分支：' + str)
       })
       .catch((err) => {
-        console.log('删除分支失败' + err)
+        console.log('删除本地分支失败' + err)
       })
+    if (answers.removeOrigin) {
+      execaCommand('git push origin --delete ' + str)
+      .then(() => {  
+        console.log('已成功删除远程分支：' + str)
+      })
+      .catch((err) => {
+        console.log('删除远程分支失败' + err)
+      })
+    }
   })
   .catch((error) => {
     console.log('error', error);
